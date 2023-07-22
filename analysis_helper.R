@@ -32,7 +32,21 @@ makeDummyDate <- function(numRows=1, numInts=0, numFact=0, intRanges=list(c(0,10
   
 }
 
-
+replace_substrings_with_empty <- function(df) {
+  # Define the patterns to be replaced
+  patterns <- c("(est)", "â???"", "Â ")
+  
+  # Loop through each column of the dataframe
+  for (col in names(df)) {
+    # Loop through each pattern and replace with an empty string
+    for (pattern in patterns) {
+      df[[col]] <- gsub(pattern, "", df[[col]], fixed = TRUE)
+    }
+  }
+  
+  # Return the modified dataframe
+  return(df)
+}
 
 
 
